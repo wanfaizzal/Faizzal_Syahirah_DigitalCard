@@ -465,6 +465,85 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
 .nav a:hover{color:var(--wine)}
 .nav svg{width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round}
 
+/* ═══════════════════════ seksyen sebagai kad ══════════════════════════
+   Setiap seksyen ialah kad kertas berbingkai emas dua garis, sama seperti
+   gerbang pada kulit jemputan, terapung di atas latar blush. */
+.shell{background:var(--wash)}
+.hero,.closing{background:var(--paper)}
+.sec,.sec.tint{
+  margin:16px 12px; padding:44px 22px 40px; border-radius:16px;
+  background:var(--paper); box-shadow:0 14px 34px -24px rgba(117,33,58,.5);
+  border:1px solid rgba(190,158,96,.6);
+}
+.sec::before{
+  content:""; position:absolute; inset:6px; border-radius:11px; pointer-events:none;
+  border:1px solid rgba(190,158,96,.3);
+}
+.sec.arch{border-radius:190px 190px 16px 16px; padding-top:64px}
+.sec.arch::before{border-radius:184px 184px 11px 11px}
+.sec .corner{width:104px; opacity:.55}
+.sec .corner.is-tl{top:-4px; left:-4px}
+.sec .corner.is-br{bottom:-4px; right:-4px}
+.sec.arch .corner.is-tl{display:none}
+
+/* tajuk kecil diapit garis emas, tajuk besar dengan hiasan berlian */
+.sec .eyebrow{display:flex; align-items:center; justify-content:center; gap:10px; letter-spacing:.32em}
+.sec .eyebrow::before,.sec .eyebrow::after{content:""; flex:0 0 16px; height:1px; background:var(--gold); opacity:.7}
+.orn,.h2:not(:empty)::after{
+  display:block; width:140px; height:12px; margin:14px auto 0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 12'%3E%3Cpath d='M4 6h52M84 6h52' stroke='%23BE9E60' stroke-width='.8'/%3E%3Cpath d='M70 1l5 5-5 5-5-5z' fill='none' stroke='%23BE9E60' stroke-width='.9'/%3E%3Ccircle cx='70' cy='6' r='1.4' fill='%23BE9E60'/%3E%3Ccircle cx='60' cy='6' r='1' fill='%23BE9E60'/%3E%3Ccircle cx='80' cy='6' r='1' fill='%23BE9E60'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.h2:not(:empty)::after{content:""}
+.orn{margin:30px auto}
+
+/* salam */
+.sec .arab{font-size:22px}
+.parents{gap:0; margin:22px 0 8px}
+.parents .orn{margin:20px auto}
+.par-n{font-size:15.5px}
+.par-amp{font-size:22px; color:var(--gold)}
+.couple{
+  margin:24px auto 4px; padding:20px 10px; max-width:var(--block);
+  border-top:1px solid rgba(190,158,96,.5); border-bottom:1px solid rgba(190,158,96,.5);
+  background:radial-gradient(80% 90% at 50% 50%, rgba(232,198,205,.28), transparent);
+}
+.couple .cn{font-size:17px; letter-spacing:.06em; line-height:1.55}
+.couple .cw{font-family:var(--script); font-style:normal; font-size:24px; color:var(--blush); margin:6px 0}
+
+/* tarikh */
+.datecard{
+  grid-template-columns:auto auto auto auto auto; gap:16px;
+  margin-top:6px; padding:16px 26px; border:1px solid rgba(190,158,96,.6); border-radius:999px;
+  background:linear-gradient(180deg,#fff,var(--wash)); box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px rgba(190,158,96,.3);
+}
+.datecard .rule{background:rgba(190,158,96,.6)}
+.datecard .mon{line-height:1.6}
+.times{margin-top:16px}
+
+/* butang utama: sama dengan butang kulit */
+.btn{background:linear-gradient(135deg,#8A2A45 0%,var(--wine) 60%,#5E1A2E 100%); box-shadow:0 10px 22px -12px rgba(117,33,58,.75)}
+.btn.ghost{background:transparent; box-shadow:none}
+
+/* kiraan detik: tingkap bergerbang */
+.cd{gap:8px}
+.cd-b{
+  padding:18px 2px 13px; border:1px solid rgba(190,158,96,.55); border-radius:999px 999px 8px 8px;
+  background:linear-gradient(180deg,#fff,var(--wash)); box-shadow:0 8px 18px -14px rgba(117,33,58,.6);
+}
+
+/* atur cara */
+.tl-line::before{background:linear-gradient(var(--gold),rgba(190,158,96,.25))}
+.tl-line::after{background:var(--paper); border:1.5px solid var(--gold); box-shadow:0 0 0 3px rgba(190,158,96,.15)}
+.tl-row{padding:2px 0 10px}
+
+/* galeri: cetakan foto dengan sempadan putih dan garis emas halus */
+.gal figure{padding:4px; background:#fff; border:none; box-shadow:0 0 0 1px rgba(190,158,96,.4), 0 10px 22px -14px rgba(112,48,60,.6)}
+
+/* hubungi */
+.ccard{border-radius:12px; border:1px solid rgba(190,158,96,.5); box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px rgba(190,158,96,.22); background:linear-gradient(180deg,#fff,rgba(251,243,241,.7))}
+.cava{box-shadow:0 0 0 3px var(--paper), 0 0 0 4px var(--gold)}
+.cbtn{border-color:rgba(190,158,96,.5)}
+
 /* ═════════════════════════════ petals ═════════════════════════════════ */
 .petals{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1}
 .petal{position:absolute; top:-8%; width:11px; height:11px; opacity:0; animation:fall linear infinite}
@@ -586,53 +665,59 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
   </section>
 
   <!-- ─────────────────────────── SALAM ────────────────────────── -->
-  <section class="sec">
+  <section class="sec arch">
     <img class="corner is-tl" src="assets/sudut-bunga.svg?v=2" alt="">
     <p class="arab rv" lang="ar" dir="rtl">&#1575;&#1604;&#1587;&#1617;&#1614;&#1604;&#1614;&#1575;&#1605;&#1615; &#1593;&#1614;&#1604;&#1614;&#1610;&#1618;&#1603;&#1615;&#1605;&#1618; &#1608;&#1614;&#1585;&#1614;&#1581;&#1618;&#1605;&#1614;&#1577;&#1615; &#1575;&#1604;&#1604;&#1607;&#1616; &#1608;&#1614;&#1576;&#1614;&#1585;&#1614;&#1603;&#1614;&#1575;&#1578;&#1615;&#1607;&#1615;</p>
-    <div class="eyebrow rv d1">Assalamualaikum &amp; Salam Sejahtera, kami</div>
-	 <div class="parents">
-      <div class="rv d2">
-	   <div class="par-side">Ibu Bapa Pengantin Lelaki</div>
+    <div class="eyebrow rv d1">Assalamualaikum &amp; Salam Sejahtera</div>
+
+    <div class="parents rv d2">
+      <div>
+        <div class="par-side">Ibu Bapa Pengantin Lelaki</div>
         <div class="par-n">Wan Zainal Abidin Bin Wan Chee</div>
         <div class="par-amp">&amp;</div>
-        <div class="par-n">Noor Suriyati Binti Mohd Long</div>  
-		<br>		
-		<div class="par-side">Ibu Bapa Pengantin Perempuan</div>
+        <div class="par-n">Noor Suriyati Binti Mohd Long</div>
+      </div>
+      <div class="orn" aria-hidden="true"></div>
+      <div>
+        <div class="par-side">Ibu Bapa Pengantin Perempuan</div>
         <div class="par-n">Mohammad Ariffin Bin Abdul Wahab</div>
         <div class="par-amp">&amp;</div>
         <div class="par-n">Mazlina Binti Abdul Kadir</div>
       </div>
     </div>
-	
-	   <p class="body-txt rv d2">
+
+    <p class="body-txt rv d3">
       Dengan penuh rasa kesyukuran dan rendah hati, ingin menjemput
       Tan Sri / Puan Sri / Dato&rsquo; Sri / Datin Sri / Dato&rsquo; / Datin / Tuan / Puan / Encik / Cik
       ke majlis perkahwinan anakanda kami.
     </p>
-	    <div class="couple rv d4">
- 
-      <div class="cn"><small>Wan Rusyhuddeen Faizzal Bin Wan Zainal Abidin</small></div>
+
+    <div class="couple rv d4">
+      <div class="cn">Wan Rusyhuddeen Faizzal<br>Bin Wan Zainal Abidin</div>
       <div class="cw">dengan pilihan hatinya</div>
-      <div class="cn"><small>Nur Syahirah Binti Mohammad Ariffin</small></div>
-	
+      <div class="cn">Nur Syahirah<br>Binti Mohammad Ariffin</div>
     </div>
-  
+    <img class="corner is-br" src="assets/sudut-bunga.svg?v=2" alt="">
+  </section>
 
-  <!-- ────────────────────── TARIKH & MASA ─────────────────────── -->
-  
+  <!-- ─────────────────── TARIKH, LOKASI & KIRAAN ───────────────── -->
   <section class="sec" id="tarikh">
-    <div class="eyebrow rv">Tarikh</div>
-    <h2 class="h2 rv" style="margin-bottom:22px"></h2>
- <div class="loc-name rv d1">29 November 2026</div>
+    <div class="eyebrow rv">Tarikh &amp; Masa</div>
+    <div class="datecard rv d1">
+      <div class="dow">Ahad</div>
+      <div class="rule"></div>
+      <div class="day">29</div>
+      <div class="rule"></div>
+      <div class="mon">Nov<br>2026</div>
+    </div>
+    <div class="times rv d2"><div><b>11.00 pagi</b> &ndash; <b>4.30 petang</b></div></div>
 
-  <!-- <section class="sec tint" id="lokasi"> -->
+    <div class="orn rv" aria-hidden="true"></div>
 
-    <br>
-	<div class="eyebrow rv">Lokasi</div>
-    <h2 class="h2 rv" style="margin-bottom:18px"></h2>
-
-    <div class="loc-name rv d1">Asiana Grand Hall Selayang</div>
-    <div class="loc-addr rv d1">Emerald Avenue, 68100 Batu Caves<br>Selangor</div>
+    <div id="lokasi">
+      <div class="eyebrow rv">Lokasi</div>
+      <div class="loc-name rv d1">Asiana Grand Hall Selayang</div>
+      <div class="loc-addr rv d1">Emerald Avenue, 68100 Batu Caves<br>Selangor</div>
 
     <div class="btn-row rv d2">
       <a class="btn" id="mapBtn" href="#" target="_blank" rel="noopener">
@@ -645,7 +730,6 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
       </a>
     </div>
 
-
     <div class="rv d3">
       <div class="eyebrow" style="margin-top:30px">Pintu Masuk &middot; dari Jalan PS 7</div>
       <figure class="ent">
@@ -656,18 +740,18 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
       </figure>
       <p class="note">Parkir berbayar tersedia di kawasan bangunan.</p>
     </div>
- 
+    </div>
 
-    <h2 class="h2 rv" style="margin:30px 0 8px">Menghitung Hari</h2>
+    <div class="orn rv" aria-hidden="true"></div>
+
+    <div class="eyebrow rv">Menghitung Hari</div>
     <div class="cd rv d1">
       <div class="cd-b"><div class="cd-n" id="cdD">--</div><div class="cd-l">Hari</div></div>
       <div class="cd-b"><div class="cd-n" id="cdH">--</div><div class="cd-l">Jam</div></div>
       <div class="cd-b"><div class="cd-n" id="cdM">--</div><div class="cd-l">Minit</div></div>
       <div class="cd-b"><div class="cd-n" id="cdS">--</div><div class="cd-l">Saat</div></div>
     </div>
-	<br>
-
-  </section>  </section>
+  </section>
   
 
   <!-- ────────────────────────── ATUR CARA ─────────────────────── -->
@@ -826,7 +910,7 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
     <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
     Tarikh
   </a>
-  <a href="#tarikh">
+  <a href="#lokasi">
     <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg>
     Lokasi
   </a>
