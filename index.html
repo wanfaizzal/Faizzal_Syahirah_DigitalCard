@@ -90,27 +90,72 @@ body.opened .g-door.l{transform:translateX(-51%)}
 body.opened .g-door.r{transform:translateX(51%)}
 #gate .g-inner{
   position:relative; width:100%; max-width:var(--shell); height:100%;
-  margin:0 auto; display:grid; place-items:center; text-align:center; overflow:hidden;
+  margin:0 auto; display:grid; place-items:center; text-align:center; overflow:hidden; z-index:2;
 }
-.g-body{position:relative; z-index:2; padding:0 46px; animation:rise 1.1s .15s both}
+.g-body{position:relative; z-index:2; padding:0 22px}
+/* panel gerbang: bingkai emas dua garis berbentuk gerbang, muat mengikut kandungan */
+.g-card{
+  position:relative; width:min(292px,78vw); margin:0 auto; padding:40px 22px 30px;
+  border:1px solid rgba(190,158,96,.75); border-radius:999px 999px 22px 22px;
+  background:linear-gradient(180deg, rgba(255,252,250,.9) 0%, rgba(255,252,250,.8) 100%);
+  box-shadow:0 18px 40px -22px rgba(117,33,58,.45);
+}
+.g-card::before{
+  content:""; position:absolute; inset:6px; pointer-events:none;
+  border:1px solid rgba(190,158,96,.4); border-radius:999px 999px 17px 17px;
+}
+.g-card > *{animation:rise 1s both}
+.g-card > :nth-child(1){animation-delay:.15s} .g-card > :nth-child(2){animation-delay:.3s}
+.g-card > :nth-child(3){animation-delay:.45s} .g-card > :nth-child(4){animation-delay:.6s}
+.g-card > :nth-child(5){animation-delay:.75s} .g-card > :nth-child(6){animation-delay:.9s}
+.g-card > :nth-child(7){animation-delay:1.05s}
 .g-mono{
-  font-family:var(--script); font-size:74px; line-height:1; color:var(--wine);
-  margin-bottom:6px; text-shadow:0 2px 14px rgba(255,255,255,.9);
+  width:86px; height:86px; margin:0 auto; display:grid; place-items:center; border-radius:50%;
+  border:1px solid rgba(190,158,96,.8); box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px rgba(190,158,96,.45);
+  background:radial-gradient(circle at 50% 40%, #fff 0%, var(--wash) 100%);
 }
+.g-mono span{font-family:var(--script); font-size:40px; line-height:1; color:var(--wine); transform:translateY(3px)}
 .g-kick{
-  font-family:var(--ui); font-size:9.5px; letter-spacing:.42em; text-transform:uppercase;
-  color:var(--rose); margin:14px 0 20px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--ui); font-size:8.5px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--rose); margin:20px 0 6px; white-space:nowrap;
 }
-.g-names{font-family:var(--title); font-size:23px; letter-spacing:.13em; color:var(--wine); line-height:1.9}
-.g-amp{font-family:var(--script); font-size:26px; color:var(--blush); letter-spacing:0}
-.g-to{font-family:var(--serif); font-style:italic; font-size:15px; color:var(--ink-soft); margin:22px 0 4px}
+.g-kick::before,.g-kick::after{content:""; width:12px; flex:none; height:1px; background:var(--gold); opacity:.7}
+.g-names{font-family:var(--script); font-size:48px; line-height:1.05; color:var(--wine)}
+.g-amp{
+  display:flex; align-items:center; justify-content:center; gap:12px; margin:2px 0;
+  font-family:var(--title); font-size:16px; color:var(--gold); line-height:1.6;
+}
+.g-amp::before,.g-amp::after{content:""; width:34px; height:1px; background:linear-gradient(90deg,transparent,var(--gold))}
+.g-amp::after{transform:scaleX(-1)}
+.g-div{width:150px; margin:10px auto 6px; opacity:.9}
+.g-date{font-family:var(--serif); font-size:13px; letter-spacing:.32em; text-transform:uppercase; color:var(--ink); line-height:1.9}
+.g-date b{display:block; font-family:var(--title); font-weight:400; font-size:17px; letter-spacing:.24em; color:var(--wine)}
+.g-to{font-family:var(--serif); font-style:italic; font-size:14px; color:var(--ink-soft); margin:14px 0 0}
 .g-guest{font-family:var(--title); font-size:15px; letter-spacing:.06em; color:var(--ink)}
+.g-to[hidden]{display:none}
 .g-btn{
-  margin-top:30px; font-family:var(--ui); font-size:11px; letter-spacing:.28em; text-transform:uppercase;
-  padding:15px 34px; border:1px solid var(--rose); border-radius:999px; background:rgba(255,255,255,.82);
-  color:var(--wine); cursor:pointer; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); transition:.35s;
+  position:relative; margin-top:22px; display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--ui); font-size:10.5px; font-weight:400; letter-spacing:.3em; text-transform:uppercase;
+  padding:14px 28px 14px 24px; border:1px solid var(--wine); border-radius:999px;
+  background:linear-gradient(135deg,#8A2A45 0%,var(--wine) 60%,#5E1A2E 100%); color:#FFF6F2; cursor:pointer;
+  box-shadow:0 10px 24px -10px rgba(117,33,58,.7); transition:transform .3s, box-shadow .3s;
 }
-.g-btn:hover{background:var(--wine); border-color:var(--wine); color:#fff; letter-spacing:.32em}
+.g-btn svg{width:16px; height:16px; flex:none}
+/* gelang berdenyut lembut mengajak tetamu menekan */
+.g-btn::after{
+  content:""; position:absolute; inset:-1px; border-radius:inherit; border:1px solid var(--rose);
+  animation:ring 2.6s ease-out 2s infinite; pointer-events:none;
+}
+@keyframes ring{0%{transform:scale(1); opacity:.8} 100%{transform:scale(1.25,1.6); opacity:0}}
+.g-btn:hover{transform:translateY(-1px); box-shadow:0 14px 28px -10px rgba(117,33,58,.8)}
+.g-btn:active{transform:scale(.97)}
+.g-petals{z-index:1; transition:opacity 1s ease}
+body.opened .g-petals{opacity:0}
+@media(max-height:700px){
+  .g-card{padding:30px 20px 24px} .g-mono{width:70px; height:70px} .g-mono span{font-size:33px}
+  .g-names{font-size:40px} .g-kick{margin-top:14px} .g-btn{margin-top:16px}
+}
 body.opened #gate{visibility:hidden; pointer-events:none; transition:visibility 0s 3s}
 body.opened .g-body{animation:gOut .9s cubic-bezier(.4,0,.2,1) both}
 @keyframes gOut{to{opacity:0; transform:translateY(-18px) scale(.97)}}
@@ -481,16 +526,25 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
 <div id="gate">
   <div class="g-door l"><div class="g-art"><img class="frame" src="assets/bingkai-bunga.webp" alt=""></div></div>
   <div class="g-door r"><div class="g-art"><img class="frame" src="assets/bingkai-bunga.webp" alt=""></div></div>
+  <div class="petals g-petals" id="gPetals"></div>
   <div class="g-inner">
     <div class="g-body">
-      <div class="g-mono">F&amp;S</div>
-      <div class="g-kick">Undangan Walimatul Urus</div>
-      <div class="g-names">
-        Faizzal
-        <div class="g-amp">&amp;</div>
-        Syahirah
+      <div class="g-card">
+        <div class="g-mono"><span>F&amp;S</span></div>
+        <div class="g-kick">Undangan Walimatul Urus</div>
+        <div class="g-names">
+          Faizzal
+          <div class="g-amp">&amp;</div>
+          Syahirah
+        </div>
+        <img class="g-div" src="assets/garis-bunga.svg?v=2" alt="">
+        <div class="g-date"><b>29 &middot; 11 &middot; 2026</b>Ahad</div>
+        <div class="g-to" id="guestTo" hidden>Kepada<div class="g-guest" id="guestName"></div></div>
+        <div><button class="g-btn" id="openBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+          Buka Jemputan
+        </button></div>
       </div>
-      <button class="g-btn" id="openBtn">Buka</button>
     </div>
   </div>
 </div>
@@ -820,7 +874,7 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
   /* ───────────── personalised greeting (?to=Nama) ───────────── */
   try{
     var to = new URLSearchParams(location.search).get("to");
-    if(to){ $("#guestName").textContent = to.slice(0,60); }
+    if(to){ $("#guestName").textContent = to.slice(0,60); $("#guestTo").hidden = false; }
   }catch(e){}
 
   /* ───────────── map links ───────────── */
@@ -959,11 +1013,10 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
   }
 
   /* ───────────── petals ───────────── */
-  (function(){
+  function addPetals(host, n){
     if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var host = $("#petals");
     var tints = ["#8C2942","#C4788A","#A8455C","#E8C6CD","#FDF6F3"];
-    for(var i=0;i<14;i++){
+    for(var i=0;i<n;i++){
       var d = document.createElement("div");
       d.className = "petal";
       d.style.left = (Math.random()*100).toFixed(1) + "%";
@@ -975,7 +1028,9 @@ body.lb-open .nav,body.lb-open .floats{opacity:0; pointer-events:none; transitio
                   + tints[i % tints.length] + '" opacity=".85"/></svg>';
       host.appendChild(d);
     }
-  })();
+  }
+  addPetals($("#petals"), 14);
+  addPetals($("#gPetals"), 10);
 
   /* ───────────── countdown ───────────── */
   var target = new Date(EVENT.startISO).getTime();
