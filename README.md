@@ -105,14 +105,12 @@ JPEG kualiti ~80 (kekalkan di bawah ~120 KB sefail supaya kad kekal ringan).
 
 ## Menyunting berdua
 
-Dua repo menyimpan kad yang sama:
+Repo: <https://github.com/wanfaizzal/Faizzal_Syahirah_DigitalCard> (remote `origin`).
+Pautan kad: <https://wanfaizzal.github.io/Faizzal_Syahirah_DigitalCard/>
 
-- <https://github.com/wanfaizzal/Faizzal_Syahirah_DigitalCard> (remote `faizzal`) —
-  milik Wan. Pautan kad: <https://wanfaizzal.github.io/Faizzal_Syahirah_DigitalCard/>
-- <https://github.com/syahiraharffn/project> (remote `origin`) — Syahirah pemilik,
-  Wan akses tulis. Pautan kad: <https://syahiraharffn.github.io/project/>
-
-Tolak ke kedua-duanya supaya dua pautan kekal sama: `git push origin main && git push faizzal main`.
+Repo lama <https://github.com/syahiraharffn/project> (remote `syahirah`) disimpan
+sebagai arkib sahaja dan **tidak dikemas kini lagi** — jangan tolak ke sana dan
+jangan padamnya.
 
 Sentiasa tarik dahulu sebelum mula menyunting:
 
