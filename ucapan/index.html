@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tinggalkan Ucapan · Faizzal &amp; Syahirah</title>
+<meta name="theme-color" content="#FBF3F1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tinggalkan Ucapan untuk Faizzal &amp; Syahirah">
+<meta property="og:description" content="Rakamkan video, suara atau tulis ucapan, doa dan nasihat untuk pengantin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&family=Pinyon+Script&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#3F2A2F;  --ink-soft:#6E545A;
+  --wine:#75213A; --wine-dark:#5C1A2E; --rose:#A85E72; --rose-pale:#E8C6CD;
+  --gold:#BE9E60; --sage:#6E8467;
+  --paper:#FFFCFA; --wash:#FBF3F1; --line:#EFDFE0;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --title:"Marcellus","Cormorant Garamond",Georgia,serif;
+  --script:"Pinyon Script","Cormorant Garamond",cursive;
+  --ui:"Jost","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--wash);color:var(--ink);font-family:var(--ui);-webkit-text-size-adjust:100%}
+body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
+.shell{width:100%;max-width:440px;display:flex;flex-direction:column;gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px 20px;box-shadow:0 10px 30px -18px rgba(117,33,58,.35)}
+
+header{text-align:center;padding:10px 6px 0}
+.bism{font-family:"Amiri",serif;font-size:20px;color:var(--wine);margin:0 0 4px}
+.names{font-family:var(--script);font-size:46px;line-height:1.1;color:var(--wine);margin:0}
+.rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:8px auto 10px;color:var(--gold)}
+.rule::before,.rule::after{content:"";height:1px;width:64px;background:currentColor;opacity:.7}
+h1{font-family:var(--title);font-weight:400;font-size:26px;line-height:1.2;color:var(--ink);margin:0 0 6px}
+.lede{font-family:var(--serif);font-size:19px;line-height:1.4;color:var(--ink-soft);margin:0}
+
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--wash);border:1px solid var(--line);border-radius:16px;padding:5px}
+.tab{appearance:none;border:0;background:transparent;border-radius:12px;min-height:48px;font:500 15px var(--ui);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--wine);color:#fff;box-shadow:0 4px 12px -6px rgba(117,33,58,.6)}
+.tab svg{width:18px;height:18px}
+
+.panel{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.panel[hidden]{display:none}
+.stage{position:relative;width:100%;aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:#2b1a1f;display:flex;align-items:center;justify-content:center}
+.stage video{width:100%;height:100%;object-fit:cover;display:block;background:#2b1a1f}
+.stage video.mirror{transform:scaleX(-1)}
+.stage .hint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#F6E9EC;text-align:center;padding:24px;font-size:15px;line-height:1.45}
+.stage .hint svg{width:44px;height:44px;opacity:.85}
+.count{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--title);font-size:110px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.45);pointer-events:none}
+.rec{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.55);color:#fff;font:500 14px var(--ui);padding:6px 11px;border-radius:99px}
+.rec i{width:10px;height:10px;border-radius:50%;background:#ff4d5e;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+.bar{position:absolute;left:0;bottom:0;height:5px;background:var(--gold);width:0;transition:width .25s linear}
+.prompt{position:absolute;left:12px;right:12px;bottom:14px;background:rgba(255,252,250,.92);color:var(--ink);border-radius:12px;padding:9px 12px;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.3;text-align:center}
+
+.audio-stage{border-radius:18px;background:var(--wash);border:1px solid var(--line);padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.mic{width:96px;height:96px;border-radius:50%;background:var(--wine);color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
+.mic svg{width:40px;height:40px}
+.mic.live::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--rose);animation:pulse 1.4s infinite}
+@keyframes pulse{from{transform:scale(.9);opacity:1}to{transform:scale(1.25);opacity:0}}
+.timer{font:500 22px var(--ui);color:var(--wine);font-variant-numeric:tabular-nums}
+.audio-stage audio{width:100%}
+
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{appearance:none;border:1px solid transparent;border-radius:14px;min-height:52px;padding:0 18px;font:500 16px var(--ui);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 140px;text-decoration:none}
+.btn svg{width:20px;height:20px}
+.btn-primary{background:var(--wine);color:#fff}
+.btn-primary:hover{background:var(--wine-dark)}
+.btn-ghost{background:var(--paper);color:var(--wine);border-color:var(--rose-pale)}
+.btn-ghost:hover{background:var(--wash)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.link{background:none;border:0;color:var(--wine);font:500 15px var(--ui);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px;min-height:44px;align-self:center}
+
+label{display:block;font:500 14px var(--ui);color:var(--ink);margin:0 0 6px}
+.opt{font-weight:400;color:var(--ink-soft)}
+input[type=text],textarea{width:100%;border:1px solid #D9C3C8;border-radius:12px;background:#fff;padding:13px 14px;font:16px var(--ui);color:var(--ink)}
+textarea{min-height:130px;resize:vertical;line-height:1.5}
+input:focus-visible,textarea:focus-visible,.btn:focus-visible,.tab:focus-visible,.link:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.fields{display:flex;flex-direction:column;gap:14px}
+.fields .btn{flex:0 0 auto;width:100%}
+.small{font-size:13px;color:var(--ink-soft);line-height:1.45;margin:0}
+
+.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose),var(--wine));transition:width .2s}
+.status{font-size:14px;color:var(--ink-soft);text-align:center;margin:0}
+.error{background:#FDECEE;border:1px solid #F1C2C9;color:#7A1F2E;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45}
+.notice{background:#FFF6E5;border:1px solid #EBD3A5;color:#6B4A12;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45}
+
+.thanks{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 6px}
+.heart{width:72px;height:72px;color:var(--wine);animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+.thanks h2{font-family:var(--script);font-weight:400;font-size:44px;color:var(--wine);margin:4px 0 0;line-height:1.1}
+.thanks p{font-family:var(--serif);font-size:19px;color:var(--ink-soft);margin:0;line-height:1.4}
+
+footer{text-align:center;font-size:13px;color:var(--ink-soft);padding-bottom:8px}
+footer a{color:var(--wine)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="shell">
+
+  <header>
+    <p class="bism" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p class="names">Faizzal &amp; Syahirah</p>
+    <div class="rule" aria-hidden="true">✦</div>
+    <h1>Tinggalkan Ucapan Untuk Kami</h1>
+    <p class="lede">Rakamkan ucapan, doa atau nasihat anda. Ia akan kami simpan dan tonton semula sepanjang hayat.</p>
+  </header>
+
+  <div id="notConfigured" class="notice" hidden>
+    Laman ini belum disambungkan ke storan. Ucapan belum boleh dihantar buat masa ini.
+  </div>
+
+  <section class="card" id="composer">
+    <div class="tabs" role="tablist" aria-label="Jenis ucapan">
+      <button class="tab" role="tab" id="tab-video" aria-controls="panel-video" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l5-3v10l-5-3z"/></svg>Video
+      </button>
+      <button class="tab" role="tab" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Suara
+      </button>
+      <button class="tab" role="tab" id="tab-text" aria-controls="panel-text" aria-selected="false" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>Tulis
+      </button>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="panel" id="panel-video" role="tabpanel" aria-labelledby="tab-video">
+      <div class="stage" id="vStage">
+        <video id="vLive" class="mirror" playsinline muted autoplay hidden></video>
+        <video id="vPlay" playsinline controls hidden></video>
+        <div class="hint" id="vHint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l5-3v10l-5-3z"/></svg>
+          <span>Tekan <strong>Buka Kamera</strong> dan benarkan akses kamera &amp; mikrofon.<br>Maksimum 60 saat.</span>
+        </div>
+        <div class="count" id="vCount" hidden aria-live="assertive"></div>
+        <div class="rec" id="vRec" hidden><i></i><span id="vTime">0:00</span> / 1:00</div>
+        <div class="prompt" id="vPrompt" hidden>“Ucapan, doa atau nasihat untuk pengantin…”</div>
+        <div class="bar" id="vBar"></div>
+      </div>
+      <div class="row" id="vControls">
+        <button class="btn btn-primary" id="vOpen" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Buka Kamera
+        </button>
+        <button class="btn btn-primary" id="vStart" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="currentColor"/></svg>Mula Rakam
+        </button>
+        <button class="btn btn-primary" id="vStop" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>Berhenti
+        </button>
+        <button class="btn btn-ghost" id="vRetake" type="button" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg>Rakam Semula
+        </button>
+      </div>
+      <button class="link" id="vPick" type="button">atau pilih video dari galeri telefon</button>
+      <input type="file" id="vFile" accept="video/*" class="vh" tabindex="-1" aria-hidden="true">
+    </div>
+
+    <!-- AUDIO -->
+    <div class="panel" id="panel-audio" role="tabpanel" aria-labelledby="tab-audio" hidden>
+      <div class="audio-stage">
+        <div class="mic" id="aMic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </div>
+        <div class="timer" id="aTime" aria-live="polite">0:00 / 1:00</div>
+        <p class="small" id="aHint">Malu depan kamera? Rakam suara sahaja. Maksimum 60 saat.</p>
+        <audio id="aPlay" controls hidden></audio>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" id="aStart" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="currentColor"/></svg>Mula Rakam Suara
+        </button>
+        <button class="btn btn-primary" id="aStop" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>Berhenti
+        </button>
+        <button class="btn btn-ghost" id="aRetake" type="button" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg>Rakam Semula
+        </button>
+      </div>
+    </div>
+
+    <!-- TEXT -->
+    <div class="panel" id="panel-text" role="tabpanel" aria-labelledby="tab-text" hidden>
+      <div>
+        <label for="tMsg">Ucapan anda</label>
+        <textarea id="tMsg" maxlength="1500" placeholder="Selamat pengantin baru! Semoga…"></textarea>
+      </div>
+    </div>
+
+    <!-- COMMON -->
+    <form id="form" class="fields" style="margin-top:18px" novalidate>
+      <div>
+        <label for="fName">Nama anda</label>
+        <input type="text" id="fName" autocomplete="name" maxlength="80" placeholder="cth. Pak Long Hamid" required>
+      </div>
+      <div>
+        <label for="fRel">Hubungan dengan pengantin <span class="opt">(pilihan)</span></label>
+        <input type="text" id="fRel" maxlength="80" placeholder="cth. Kawan sekolah Syahirah">
+      </div>
+      <div id="noteWrap">
+        <label for="fNote">Pesanan ringkas <span class="opt">(pilihan)</span></label>
+        <input type="text" id="fNote" maxlength="300" placeholder="Tulis sepatah dua kata">
+      </div>
+      <div id="err" class="error" role="alert" hidden></div>
+      <div id="upWrap" hidden>
+        <div class="progress" aria-hidden="true"><i id="upBar"></i></div>
+        <p class="status" id="upText" aria-live="polite">Menghantar…</p>
+      </div>
+      <button class="btn btn-primary" id="send" type="submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/></svg>Hantar Ucapan
+      </button>
+    </form>
+  </section>
+
+  <section class="card thanks" id="thanks" hidden aria-live="polite">
+    <svg class="heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-8-4.9-8-11.2A4.6 4.6 0 0 1 12 6.9a4.6 4.6 0 0 1 8 2.9C20 16.1 12 21 12 21z"/></svg>
+    <h2>Terima kasih</h2>
+    <p id="thanksMsg">Ucapan anda sudah kami terima. Semoga Allah membalas kebaikan anda.</p>
+    <div class="row" style="width:100%;margin-top:8px">
+      <button class="btn btn-ghost" id="again" type="button">Hantar ucapan lain</button>
+      <a class="btn btn-primary" href="../">Lihat kad jemputan</a>
+    </div>
+  </section>
+
+  <footer>Walimatulurus · Ahad, 29.11.2026 · Asiana Grand Hall Selayang<br>#onlywanforsyahirah</footer>
+</main>
+
+<script>
+/* ============================================================
+   TETAPAN STORAN (Cloudinary)
+   1. Daftar percuma di cloudinary.com
+   2. Settings → Upload → Upload presets → Add upload preset
+      Signing mode: Unsigned · Nama preset: ucapan_fs
+   3. Isikan "Cloud name" akaun anda di bawah.
+   ============================================================ */
+var CLOUD_NAME    = "ISI_CLOUD_NAME";
+var UPLOAD_PRESET = "ucapan_fs";
+var MAX_SECONDS   = 60;
+var MAX_BYTES     = 95 * 1024 * 1024;
+
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var configured = CLOUD_NAME && CLOUD_NAME.indexOf("ISI_") !== 0;
+  if (!configured) $("notConfigured").hidden = false;
+
+  var mode = "video";          // video | audio | text
+  var clip = { video:null, audio:null };   // { blob, name }
+  var stream = null, recorder = null, chunks = [], tick = null, startedAt = 0;
+
+  /* ---------- tabs ---------- */
+  var tabs = ["video","audio","text"];
+  function setMode(m){
+    if (recorder && recorder.state === "recording") return;
+    mode = m;
+    tabs.forEach(function(t){
+      var on = t === m;
+      $("tab-"+t).setAttribute("aria-selected", on);
+      $("tab-"+t).tabIndex = on ? 0 : -1;
+      $("panel-"+t).hidden = !on;
+    });
+    $("noteWrap").hidden = (m === "text");
+    if (m !== "video") stopStream();
+    hideErr();
+  }
+  tabs.forEach(function(t, i){
+    var el = $("tab-"+t);
+    el.addEventListener("click", function(){ setMode(t); });
+    el.addEventListener("keydown", function(e){
+      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      var n = tabs[(i + d + tabs.length) % tabs.length];
+      setMode(n); $("tab-"+n).focus(); e.preventDefault();
+    });
+  });
+
+  /* ---------- helpers ---------- */
+  function fmt(s){ s = Math.max(0, Math.floor(s)); return Math.floor(s/60) + ":" + ("0"+(s%60)).slice(-2); }
+  function showErr(msg){ var e = $("err"); e.textContent = msg; e.hidden = false; }
+  function hideErr(){ $("err").hidden = true; }
+  function pickType(kind){
+    if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return "";
+    var list = kind === "video"
+      ? ["video/mp4;codecs=avc1,mp4a","video/mp4","video/webm;codecs=vp8,opus","video/webm"]
+      : ["audio/mp4","audio/webm;codecs=opus","audio/webm"];
+    for (var i=0;i<list.length;i++) if (MediaRecorder.isTypeSupported(list[i])) return list[i];
+    return "";
+  }
+  function extFor(type){ return /mp4/.test(type) ? (/audio/.test(type) ? "m4a" : "mp4") : "webm"; }
+  var canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+  function stopStream(){
+    if (stream){ stream.getTracks().forEach(function(t){ t.stop(); }); stream = null; }
+    $("vLive").srcObject = null;
+  }
+  function camError(e){
+    var n = e && e.name;
+    if (n === "NotAllowedError" || n === "SecurityError")
+      return "Akses kamera/mikrofon disekat. Benarkan akses dalam tetapan pelayar, atau pilih video dari galeri.";
+    if (n === "NotFoundError") return "Kamera atau mikrofon tidak dijumpai pada peranti ini.";
+    return "Kamera tidak dapat dibuka. Cuba pilih video dari galeri telefon.";
+  }
+
+  /* ---------- VIDEO ---------- */
+  function vState(s){
+    // s: idle | ready | counting | recording | review
+    $("vOpen").hidden   = s !== "idle";
+    $("vStart").hidden  = s !== "ready";
+    $("vStop").hidden   = s !== "recording";
+    $("vRetake").hidden = s !== "review";
+    $("vHint").hidden   = s !== "idle";
+    $("vLive").hidden   = !(s === "ready" || s === "counting" || s === "recording");
+    $("vPlay").hidden   = s !== "review";
+    $("vRec").hidden    = s !== "recording";
+    $("vPrompt").hidden = !(s === "ready" || s === "counting");
+    $("vPick").hidden   = (s === "counting" || s === "recording");
+    if (s !== "recording") $("vBar").style.width = "0";
+  }
+  vState("idle");
+
+  $("vOpen").addEventListener("click", function(){
+    hideErr();
+    if (!canRecord){ $("vFile").click(); return; }
+    navigator.mediaDevices.getUserMedia({
+      video:{ facingMode:"user", width:{ideal:720}, height:{ideal:960}, frameRate:{ideal:24, max:30} },
+      audio:{ echoCancellation:true, noiseSuppression:true }
+    }).then(function(s){
+      stream = s; $("vLive").srcObject = s;
+      var p = $("vLive").play(); if (p && p.catch) p.catch(function(){});
+      vState("ready");
+    }).catch(function(e){ showErr(camError(e)); });
+  });
+
+  $("vStart").addEventListener("click", function(){
+    vState("counting");
+    var n = 3, c = $("vCount"); c.hidden = false; c.textContent = n;
+    var iv = setInterval(function(){
+      n--;
+      if (n > 0){ c.textContent = n; return; }
+      clearInterval(iv); c.hidden = true; startRec("video");
+    }, 800);
+  });
+  $("vStop").addEventListener("click", function(){ stopRec(); });
+  $("vRetake").addEventListener("click", function(){
+    clip.video = null; $("vPlay").removeAttribute("src"); $("vPlay").load();
+    if (stream) vState("ready"); else { vState("idle"); $("vOpen").click(); }
+  });
+  $("vPick").addEventListener("click", function(){ $("vFile").click(); });
+  $("vFile").addEventListener("change", function(){
+    var f = this.files && this.files[0]; this.value = "";
+    if (!f) return;
+    if (f.size > MAX_BYTES){ showErr("Video terlalu besar (" + Math.round(f.size/1048576) + " MB). Sila pilih video yang lebih pendek, kurang 1 minit."); return; }
+    hideErr(); stopStream();
+    clip.video = { blob:f, name:f.name || "ucapan.mp4" };
+    $("vPlay").src = URL.createObjectURL(f);
+    vState("review");
+  });
+
+  /* ---------- AUDIO ---------- */
+  function aState(s){
+    $("aStart").hidden  = s !== "idle";
+    $("aStop").hidden   = s !== "recording";
+    $("aRetake").hidden = s !== "review";
+    $("aPlay").hidden   = s !== "review";
+    $("aMic").classList.toggle("live", s === "recording");
+    if (s === "idle") $("aTime").textContent = "0:00 / 1:00";
+  }
+  aState("idle");
+  if (!canRecord){
+    $("aHint").textContent = "Pelayar ini tidak menyokong rakaman suara. Sila guna pilihan Video atau Tulis.";
+    $("aStart").disabled = true;
+  }
+  $("aStart").addEventListener("click", function(){
+    hideErr();
+    navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true } })
+      .then(function(s){ stream = s; startRec("audio"); })
+      .catch(function(e){ showErr(camError(e)); });
+  });
+  $("aStop").addEventListener("click", function(){ stopRec(); });
+  $("aRetake").addEventListener("click", function(){
+    clip.audio = null; $("aPlay").removeAttribute("src"); $("aPlay").load(); aState("idle");
+  });
+
+  /* ---------- recorder ---------- */
+  function startRec(kind){
+    var type = pickType(kind), opts = {};
+    if (type) opts.mimeType = type;
+    if (kind === "video"){ opts.videoBitsPerSecond = 1200000; opts.audioBitsPerSecond = 96000; }
+    else { opts.audioBitsPerSecond = 96000; }
+    try { recorder = new MediaRecorder(stream, opts); }
+    catch(e){ try { recorder = new MediaRecorder(stream); } catch(e2){ showErr("Rakaman tidak disokong pada pelayar ini."); return; } }
+    chunks = [];
+    recorder.ondataavailable = function(e){ if (e.data && e.data.size) chunks.push(e.data); };
+    recorder.onstop = function(){
+      clearInterval(tick);
+      var t = recorder.mimeType || type || (kind === "video" ? "video/webm" : "audio/webm");
+      var blob = new Blob(chunks, { type:t.split(";")[0] });
+      var item = { blob:blob, name:"ucapan." + extFor(t) };
+      var url = URL.createObjectURL(blob);
+      if (kind === "video"){ clip.video = item; $("vPlay").src = url; vState("review"); }
+      else { clip.audio = item; $("aPlay").src = url; aState("review"); stopStream(); }
+    };
+    recorder.start(1000);
+    startedAt = Date.now();
+    if (kind === "video") vState("recording"); else aState("recording");
+    tick = setInterval(function(){
+      var s = (Date.now() - startedAt) / 1000;
+      if (kind === "video"){ $("vTime").textContent = fmt(s); $("vBar").style.width = Math.min(100, s / MAX_SECONDS * 100) + "%"; }
+      else { $("aTime").textContent = fmt(s) + " / 1:00"; }
+      if (s >= MAX_SECONDS) stopRec();
+    }, 250);
+  }
+  function stopRec(){ if (recorder && recorder.state !== "inactive") recorder.stop(); }
+
+  /* ---------- upload ---------- */
+  function esc(v){ return String(v).replace(/[\\|=]/g, function(c){ return "\\" + c; }).replace(/[\r\n]+/g, " ").trim(); }
+
+  $("form").addEventListener("submit", function(e){
+    e.preventDefault(); hideErr();
+    if (!configured){ showErr("Laman belum disambungkan ke storan. Sila hubungi pengantin."); return; }
+    var name = $("fName").value.trim();
+    var rel  = $("fRel").value.trim();
+    var note = mode === "text" ? $("tMsg").value.trim() : $("fNote").value.trim();
+    var item = mode === "video" ? clip.video : mode === "audio" ? clip.audio : null;
+
+    if (mode === "video" && !item){ showErr("Sila rakam atau pilih video dahulu."); return; }
+    if (mode === "audio" && !item){ showErr("Sila rakam suara dahulu."); return; }
+    if (mode === "text" && !note){ showErr("Sila tulis ucapan anda dahulu."); $("tMsg").focus(); return; }
+    if (!name){ showErr("Sila isi nama anda."); $("fName").focus(); return; }
+
+    var ctx = ["nama=" + esc(name)];
+    if (rel)  ctx.push("hubungan=" + esc(rel));
+    if (note) ctx.push("ucapan=" + esc(note));
+    ctx.push("jenis=" + mode);
+
+    var fd = new FormData();
+    if (mode === "text"){
+      var json = JSON.stringify({ nama:name, hubungan:rel, ucapan:note, masa:new Date().toISOString() }, null, 2);
+      fd.append("file", new Blob([json], { type:"application/json" }), "ucapan.json");
+    } else {
+      fd.append("file", item.blob, item.name);
+    }
+    fd.append("upload_preset", UPLOAD_PRESET);
+    fd.append("tags", "ucapan_fs," + mode);
+    fd.append("context", ctx.join("|"));
+
+    var kind = mode === "text" ? "raw" : "video";   // Cloudinary simpan audio di bawah "video"
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://api.cloudinary.com/v1_1/" + encodeURIComponent(CLOUD_NAME) + "/" + kind + "/upload");
+    $("send").disabled = true; $("upWrap").hidden = false; $("upBar").style.width = "0"; $("upText").textContent = "Menghantar…";
+    xhr.upload.onprogress = function(ev){
+      if (!ev.lengthComputable) return;
+      var p = Math.round(ev.loaded / ev.total * 100);
+      $("upBar").style.width = p + "%"; $("upText").textContent = "Menghantar… " + p + "%";
+    };
+    xhr.onload = function(){
+      $("send").disabled = false; $("upWrap").hidden = true;
+      if (xhr.status >= 200 && xhr.status < 300){ done(name); return; }
+      var msg = "";
+      try { msg = JSON.parse(xhr.responseText).error.message; } catch(_){}
+      showErr("Ucapan tidak dapat dihantar" + (msg ? " (" + msg + ")" : "") + ". Sila cuba sekali lagi.");
+    };
+    xhr.onerror = function(){
+      $("send").disabled = false; $("upWrap").hidden = true;
+      showErr("Sambungan internet terputus. Rakaman anda masih ada — tekan Hantar Ucapan sekali lagi.");
+    };
+    xhr.send(fd);
+  });
+
+  function done(name){
+    stopStream();
+    $("composer").hidden = true; $("thanks").hidden = false;
+    $("thanksMsg").textContent = "Ucapan daripada " + name + " sudah kami terima. Semoga Allah membalas kebaikan anda.";
+    window.scrollTo({ top:0, behavior:"smooth" });
+  }
+  $("again").addEventListener("click", function(){
+    clip.video = null; clip.audio = null;
+    $("fNote").value = ""; $("tMsg").value = "";
+    vState("idle"); aState("idle");
+    $("thanks").hidden = true; $("composer").hidden = false;
+  });
+
+  window.addEventListener("pagehide", stopStream);
+})();
+</script>
+</body>
+</html>

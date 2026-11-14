@@ -103,6 +103,27 @@ masih kosong — slot untuk gambar 5 sahabat dan gambar kumpulan besar keluarga.
 Susunan grid ikut turutan nama fail. Saiz elok: sisi panjang lebih kurang 820px,
 JPEG kualiti ~80 (kekalkan di bawah ~120 KB sefail supaya kad kekal ringan).
 
+## Ucapan video tetamu (`ucapan/`)
+
+Halaman `ucapan/index.html` ialah sasaran kod QR pada kad meja:
+<https://wanfaizzal.github.io/Faizzal_Syahirah_DigitalCard/ucapan/>
+
+Tetamu boleh rakam **video** (maks 60 saat), **suara**, atau **tulis** ucapan.
+Fail dimuat naik terus dari telefon tetamu ke **Cloudinary** (percuma) kerana
+GitHub Pages tidak boleh menyimpan fail.
+
+Tetapan sekali sahaja:
+
+1. Daftar percuma di <https://cloudinary.com>.
+2. Settings → Upload → Upload presets → **Add upload preset**:
+   Signing mode **Unsigned**, nama preset **`ucapan_fs`**.
+3. Salin **Cloud name** akaun (di Dashboard) dan isikan pada baris
+   `var CLOUD_NAME = "...";` di bahagian `<script>` dalam `ucapan/index.html`.
+
+Semua ucapan ditag `ucapan_fs` (dan `video` / `audio` / `text`). Nama,
+hubungan dan pesanan tetamu disimpan sebagai *context* pada setiap fail —
+lihat di Cloudinary → Media Library.
+
 ## Menyunting berdua
 
 Repo: <https://github.com/wanfaizzal/Faizzal_Syahirah_DigitalCard> (remote `origin`).
